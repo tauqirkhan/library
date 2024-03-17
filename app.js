@@ -29,10 +29,16 @@ Book.prototype.displayBooks = function(){
         let pages = document.createElement('div');
         let status = document.createElement('div');
 
+        if (book.status){
+            status.classList.add('true');
+        } else {
+            status.classList.add('false');
+        }
+
         title.textContent = book.title;
         author.textContent = book.author;
         pages.textContent = book.pages;
-        status.textContent = book.status;
+        status.textContent = '';
 
         card.appendChild(title);
         card.appendChild(author);
@@ -44,20 +50,20 @@ Book.prototype.displayBooks = function(){
 }
 
 const addBtn = document.querySelector('.addBtn');
-const dailog = document.querySelector('#dialog');
+const dialog = document.querySelector('#dialog');
 const form = document.querySelector('#bookForm');
 
 addBtn.addEventListener('click', () => {
-    dailog.showModal();
+    dialog.showModal();
 });
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
 
-    const title = document.querySelector('#title').value;
-    const author = document.querySelector('#author').value;
-    const pages = document.querySelector('#pages').value;
-    const status = document.querySelector('#status').checked;
+    let title = document.querySelector('#title').value;
+    let author = document.querySelector('#author').value;
+    let pages = document.querySelector('#pages').value;
+    let status = document.querySelector('#status').checked;
 
     const newBook = new Book(title, author, pages, status);
     newBook.addBookToLib();
@@ -66,7 +72,7 @@ form.addEventListener('submit', function(e){
     form.reset();
                 
     // Optionally, close the dialog after form submission
-    document.getElementById('dialog').close();
+    dialog.close();
 });
 
 //Close dailog when clicked outside of it without changing entered value
@@ -80,4 +86,4 @@ dialog.addEventListener("click", e => {
     ) {
       dialog.close()
     }
-  })
+  });

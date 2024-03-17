@@ -17,11 +17,14 @@
             <div class="cards"></div>
             <dialog id="dialog">
                 <form id="bookForm">
-                    <input type="text" name="title" id="title" required/>
-                    <input type="text"name="author" id="author" required/>
-                    <input type="number" id="pages" name="pages"/>
-                    <input type="checkbox" id="status"/>
-                    <label for="status">Have you read it?</label>
+                    <div class="message">Add new book</div>
+                    <input type="text" name="title" id="title" placeholder="title" required/>
+                    <input type="text"name="author" id="author" placeholder="author" required/>
+                    <input type="number" id="pages" name="pages" placeholder="pages"/>
+                    <label for="status">
+                        Have you read it?
+                        <input type="checkbox" id="status"/>
+                    </label>
                     <button type="submit">Submit</button>
                 </form>
             </dialog>
