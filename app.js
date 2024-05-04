@@ -1,53 +1,53 @@
 const myLibrary = [];
 
-//Book constructor
-function Book(title, author, pages, status){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status; 
-}
+class Book {
 
-//Book prototpe method that takes user inputs and store the new Book object into an array
-Book.prototype.addBookToLib = function(){
-    myLibrary.push(this);
-}
+    constructor(title, author, pages, status){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status; 
+    }
 
-//looks through array and display each book on the page
-Book.prototype.displayBooks = function(){
+    addBookToLib(){
+        myLibrary.push(this);
+    }
 
-    let cards = document.querySelector('.cards');
-    cards.innerHTML = '';  //Clear existing content
-    
-    myLibrary.forEach(function(book){
+    displayBooks(){
+        let cards = document.querySelector('.cards');
+        cards.innerHTML = ''; 
         
-        let card = document.createElement('div');
-        card.classList.add('card');
-
-        let title = document.createElement('div');
-        let author = document.createElement('div');
-        let pages = document.createElement('div');
-        let status = document.createElement('div');
-
-        if (book.status){
-            status.classList.add('true');
-        } else {
-            status.classList.add('false');
-        }
-
-        title.textContent = book.title;
-        author.textContent = book.author;
-        pages.textContent = book.pages;
-        status.textContent = '';
-
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(status);
-
-        cards.appendChild(card);
-    });
+        myLibrary.forEach(function(book){
+            
+            let card = document.createElement('div');
+            card.classList.add('card');
+    
+            let title = document.createElement('div');
+            let author = document.createElement('div');
+            let pages = document.createElement('div');
+            let status = document.createElement('div');
+    
+            if (book.status){
+                status.classList.add('true');
+            } else {
+                status.classList.add('false');
+            }
+    
+            title.textContent = book.title;
+            author.textContent = book.author;
+            pages.textContent = book.pages;
+            status.textContent = '';
+    
+            card.appendChild(title);
+            card.appendChild(author);
+            card.appendChild(pages);
+            card.appendChild(status);
+    
+            cards.appendChild(card);
+        });
+    }
 }
+
 
 const addBtn = document.querySelector('.addBtn');
 const dialog = document.querySelector('#dialog');
