@@ -1,18 +1,12 @@
 const myLibrary = [];
-
-class Book {
-
+//Init
+class Book{
     constructor(title, author, pages, status){
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.status = status; 
     }
-
-    addBookToLib(){
-        myLibrary.push(this);
-    }
-
     displayBooks(){
         let cards = document.querySelector('.cards');
         cards.innerHTML = ''; 
@@ -48,16 +42,21 @@ class Book {
     }
 }
 
-
 const addBtn = document.querySelector('.addBtn');
 const dialog = document.querySelector('#dialog');
 const form = document.querySelector('#bookForm');
+const cards = document.querySelector('.cards');
 
-addBtn.addEventListener('click', () => {
+addBtn.addEventListener('click', showForm);
+form.addEventListener('submit', handleSubmit);
+dialog.addEventListener('click', closeModal);
+cards.addEventListener('click', handleStatus);
+ 
+function showForm(){
     dialog.showModal();
-});
+}
 
-form.addEventListener('submit', function(e){
+function handleSubmit(e){
     e.preventDefault();
 
     let title = document.querySelector('#title').value;
@@ -65,18 +64,17 @@ form.addEventListener('submit', function(e){
     let pages = document.querySelector('#pages').value;
     let status = document.querySelector('#status').checked;
 
-    const newBook = new Book(title, author, pages, status);
-    newBook.addBookToLib();
-    newBook.displayBooks();
+    let index = myLibrary.length;
+    myLibrary.push(new Book(title, author, pages, status));
+    myLibrary[index].displayBooks();
 
     form.reset();
                 
     // Optionally, close the dialog after form submission
     dialog.close();
-});
+}
 
-//Close dailog when clicked outside of it without changing entered value
-dialog.addEventListener("click", e => {
+function closeModal(e){
     const dialogDimensions = dialog.getBoundingClientRect()
     if (
       e.clientX < dialogDimensions.left ||
@@ -86,4 +84,19 @@ dialog.addEventListener("click", e => {
     ) {
       dialog.close()
     }
-  });
+}
+
+function handleStatus(e) {
+    const card = e.target.closest('.card');
+    if (card && e.target === card.lastElementChild) {
+
+        // Find the index of the clicked card in the DOM
+        const index = Array.from(cards.children).indexOf(card);
+
+        let currentBook = myLibrary[index];
+        
+        // Toggle the status of the book at that index
+        currentBook.status = !currentBook.status;
+        currentBook.displayBooks();
+    }
+}
