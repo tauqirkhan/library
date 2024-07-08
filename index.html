@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header">Library</div>
-        <div class="main">
-            <div class="mainBtn">
-                <button class="addBtn">+ Add Book</button>
-            </div>
-            <div class="cards"></div>
-            <dialog id="dialog">
-                <form id="bookForm">
-                    <div class="message">Add new book</div>
-                    <input type="text" name="title" id="title" placeholder="title" required/>
-                    <input type="text"name="author" id="author" placeholder="author" required/>
-                    <input type="number" id="pages" name="pages" placeholder="pages"/>
-                    <label for="status">
-                        Have you read it?
-                        <input type="checkbox" id="status"/>
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
-            </dialog>
+      <div class="header">Library</div>
+      <div class="main">
+        <div class="mainBtn">
+          <button class="addBtn">+ Add Book</button>
         </div>
+        <div class="cards"></div>
+        <dialog id="dialog">
+          <form id="bookForm">
+            <div class="message">Add new book</div>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="title"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <input
+              type="text"
+              name="author"
+              id="author"
+              minlength="1"
+              maxlength="20"
+              placeholder="author"
+              required
+            />
+            <input
+              type="number"
+              id="pages"
+              name="pages"
+              placeholder="pages"
+              min="1"
+              max="21450"
+              required
+            />
+            <label for="status">
+              Have you read it?
+              <input type="checkbox" id="status" />
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+        </dialog>
+      </div>
     </div>
-</body>
+  </body>
 </html>
